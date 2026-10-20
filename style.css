@@ -1,0 +1,335 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Hind Siliguri', 'Anek Bangla', sans-serif;
+}
+
+body {
+    background: #04060b;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 15px;
+    overflow-x: hidden;
+}
+
+/* এডিটর প্যানেল */
+.editor-panel {
+    background: rgba(15, 23, 42, 0.85);
+    padding: 20px;
+    border-radius: 16px;
+    width: 310px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(12px);
+    z-index: 100;
+}
+
+.editor-panel h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #00f2fe;
+}
+
+.editor-panel label {
+    display: block;
+    font-size: 12px;
+    margin-top: 10px;
+    color: #94a3b8;
+}
+
+.editor-panel textarea, 
+.editor-panel input,
+.editor-panel select {
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 4px;
+    border-radius: 6px;
+    border: 1px solid #334155;
+    background: #090d16;
+    color: #fff;
+    font-size: 13px;
+    outline: none;
+}
+
+.editor-panel textarea:focus, 
+.editor-panel input:focus,
+.editor-panel select:focus {
+    border-color: #00f2fe;
+}
+
+.actions {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.btn {
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.btn.primary {
+    background: linear-gradient(135deg, #00f2fe, #4facfe);
+    color: #000;
+}
+
+.btn.record {
+    background: linear-gradient(135deg, #ff0844, #ffb199);
+    color: #fff;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,242,254,0.4);
+}
+
+.hint {
+    font-size: 11px;
+    color: #64748b;
+    margin-top: 8px;
+    text-align: center;
+}
+
+/* ক্যানভাস ফ্রেম */
+.preview-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mobile-frame {
+    position: relative;
+    width: 315px;
+    height: 560px;
+    background: #03050a;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95);
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 18px 15px 18px;
+}
+
+/* 🔥 ১. ব্যাকগ্রাউন্ড নিয়ন অ্যানিমেশন (Glow Orbs) */
+.glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.6;
+    pointer-events: none;
+    animation: moveOrb 10s infinite alternate ease-in-out;
+}
+
+.orb-1 {
+    width: 180px;
+    height: 180px;
+    background: #ff007f;
+    top: -20px;
+    left: -20px;
+}
+
+.orb-2 {
+    width: 200px;
+    height: 200px;
+    background: #00f2fe;
+    bottom: -30px;
+    right: -30px;
+    animation-delay: -3s;
+}
+
+.orb-3 {
+    width: 150px;
+    height: 150px;
+    background: #7928ca;
+    top: 40%;
+    left: 20%;
+    animation-delay: -6s;
+}
+
+@keyframes moveOrb {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(30px, 40px) scale(1.2); }
+    100% { transform: translate(-20px, -30px) scale(0.9); }
+}
+
+/* 🔥 ২. গ্রিড লাইন ওভারলে (Cyber Grid) */
+.bg-grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 25px 25px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* 🔥 ৩. প্রফেশনাল পার্টিকেলস (Floating Stars) */
+#particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.particle {
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+    animation: floatAndTwinkle linear infinite;
+}
+
+@keyframes floatAndTwinkle {
+    0% { 
+        transform: translateY(560px) scale(0.3); 
+        opacity: 0; 
+    }
+    50% { 
+        opacity: 1; 
+        box-shadow: 0 0 12px rgba(0, 242, 254, 0.9);
+    }
+    100% { 
+        transform: translateY(-20px) scale(1); 
+        opacity: 0; 
+    }
+}
+
+/* টেক্সট কন্টেইনার */
+.caption-container {
+    margin: auto 0;
+    text-align: center;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.caption-box {
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.5;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+}
+
+.word {
+    display: inline-block;
+    opacity: 0;
+    transform: scale(0.2) translateY(20px);
+    animation: fastPop 0.25s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.line-1 .word {
+    color: #ffffff;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+}
+
+.line-2 .word {
+    color: #ffe600;
+    text-shadow: 0 0 15px #ffe600, 0 0 25px #ff007f;
+    font-size: 24px;
+}
+
+.author-tag {
+    margin-top: 8px;
+    opacity: 0;
+    transform: translateY(12px);
+}
+
+.author-badge {
+    display: inline-block;
+    background: linear-gradient(45deg, #ff007f, #7928ca);
+    padding: 6px 16px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    box-shadow: 0 0 18px rgba(255, 0, 127, 0.8);
+}
+
+@keyframes fastPop {
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ফুটার সাউন্ড ওয়েভ ও প্রোগ্রেস বার */
+.bottom-controls {
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sound-wave {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 4px;
+    height: 12px;
+}
+
+.sound-wave span {
+    width: 3px;
+    height: 100%;
+    background: #00f2fe;
+    border-radius: 3px;
+    animation: wave 0.6s ease-in-out infinite alternate;
+}
+
+.sound-wave span:nth-child(2) { animation-delay: 0.15s; }
+.sound-wave span:nth-child(3) { animation-delay: 0.3s; }
+.sound-wave span:nth-child(4) { animation-delay: 0.45s; }
+.sound-wave span:nth-child(5) { animation-delay: 0.6s; }
+
+@keyframes wave {
+    0% { height: 3px; }
+    100% { height: 14px; }
+}
+
+.progress-bar-wrap {
+    width: 100%;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #00f2fe, #ff007f);
+}
+
+body.recording-mode .editor-panel {
+    display: none;
+}
+
+body.recording-mode {
+    background: #000;
+    padding: 0;
+}

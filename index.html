@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Animated Background Caption Video</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@700;800&family=Hind+Siliguri:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- এডিটর প্যানেল -->
+    <div class="editor-panel">
+        <h2>✨ প্রফেশনাল ক্যাপশন এডিটর</h2>
+        
+        <label>প্রথম লাইন (সাদা টেক্সট):</label>
+        <textarea id="textLine1" rows="2">যে বারবার একই ভুল করলে</textarea>
+
+        <label>দ্বিতীয় লাইন (হাইলাইট নিয়ন টেক্সট):</label>
+        <textarea id="textLine2" rows="2">সেটা ভুল নয়, সেটা অভ্যাস! 💯</textarea>
+
+        <label>ইউজারনেম / সোশ্যাল হ্যান্ডেল:</label>
+        <input type="text" id="usernameInput" value="Join - @FJ">
+
+        <label>অ্যানিমেশন স্পিড (শব্দের গতি):</label>
+        <select id="speedSelect">
+            <option value="superfast">সুপার ফাস্ট (Super Fast)</option>
+            <option value="fast" selected>ফাস্ট (Fast)</option>
+            <option value="medium">মিডিয়াম (Medium)</option>
+        </select>
+
+        <label>মোট ভিডিওর প্রোগ্রেস টাইম (সেকেন্ড):</label>
+        <input type="number" id="durationInput" value="35" min="10" max="60">
+
+        <div class="actions">
+            <button id="playBtn" class="btn primary">অ্যানিমেশন প্লে করুন ⚡</button>
+            <button id="recordModeBtn" class="btn record">রেকর্ড মোড (ফুলস্ক্রিন) 🎥</button>
+        </div>
+        <p class="hint">টিপস: 'Esc' চাপলে রেকর্ড মোড বন্ধ হবে।</p>
+    </div>
+
+    <!-- ৯:১৬ প্রফেশনাল ক্যানভাস -->
+    <div class="preview-container">
+        <div class="mobile-frame" id="mobileFrame">
+            <!-- ডাইনামিক ব্যাকগ্রাউন্ড লেয়ার -->
+            <div class="bg-gradient-mesh"></div>
+            <div class="bg-grid-overlay"></div>
+            <div class="glow-orb orb-1"></div>
+            <div class="glow-orb orb-2"></div>
+            <div class="glow-orb orb-3"></div>
+
+            <!-- ভাসমান কণা (Particles) -->
+            <div id="particles"></div>
+
+            <!-- মূল ক্যাপশন -->
+            <div class="caption-container">
+                <div class="caption-box line-1" id="line1Container"></div>
+                <div class="caption-box line-2" id="line2Container"></div>
+                <div class="author-tag" id="authorTag"></div>
+            </div>
+
+            <!-- প্রোগ্রেস বার ও ওয়েভ -->
+            <div class="bottom-controls">
+                <div class="sound-wave">
+                    <span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <div class="progress-bar-wrap">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
